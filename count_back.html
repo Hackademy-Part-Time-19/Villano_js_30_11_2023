@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            ;
+        }
+        body{
+            background-color: black;
+        }
+        h1{
+            color: white; text-align: center;font-size: 45px; margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex;align-items: center;justify-content: center;">
+
+
+        <div style="display: flex;align-items: center;justify-content: center;">
+            <h1 id="countdown" style="font-size: 100px;color: white;text-align: center;margin-top: 50px;"></h1>
+        </div>
+    </div>
+    <div id="background" style=" position: fixed; top: 0; left: 0; width: 100%; height: 100%;background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out;"></div>
+    <script>
+        let immagini = [
+        "https://www.helvetia.com/it/web/it/chi-siamo/blog/Assicurazione/animali/assicurazione-gatto/_jcr_content/teaserimage/image.1614768295063.transform-fp/1920x1080/assicurazione-gatto.jpg",
+        "https://www.medicalfacts.it/wp-content/uploads/2020/08/0F126554-1B7A-488C-972A-06C2EB0BD4C5-900x580.jpeg",
+        "https://www.ansa.it/webimages/news_base/2020/8/5/7f6450dc6002a319e35f1ad411ebdcab.jpg"
+        ];
+
+        let indice = 0;
+        let countdown = 5;
+
+        document.getElementById("countdown").innerHTML = countdown;
+
+
+        let countdownInterval = setInterval(() => {
+            countdown--;
+
+            if (countdown > 0) {
+                document.getElementById("countdown").innerHTML = countdown;
+            }
+
+            if (countdown === 0) {
+                document.getElementById("countdown").innerHTML =""
+
+
+                document.getElementById("background").style.backgroundImage = `url('${immagini[indice]}')`;
+                document.getElementById("background").style.opacity = 1;
+
+                setTimeout(() => {
+                    document.getElementById("background").style.opacity = 0;
+                }, 2000);
+
+                indice++;
+
+                if (indice >= immagini.length) {
+                    indice = 0;
+                }
+            }
+        }, 1000);
+
+
+        setInterval(() => {
+            document.getElementById("background").style.backgroundImage = `url('${immagini[indice]}')`;
+            document.getElementById("background").style.opacity = 1;
+
+            setTimeout(() => {
+                document.getElementById("background").style.opacity = 0;
+            }, 2000);
+
+            indice++;
+
+            if (indice >= immagini.length) {
+                indice = 0;
+            }
+        }, 5000);
+
+    </script>
+
+</body>
+</html>
